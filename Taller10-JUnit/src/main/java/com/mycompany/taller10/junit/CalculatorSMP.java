@@ -18,7 +18,7 @@ public class CalculatorSMP {
 
         String question = Operations.MakeFormula();
         System.out.println(question);
-        String ret = Operations.Solve(question);
+        String ret = Operations.Solve("05/02");
         System.out.println(ret);
     }
     
