@@ -4,6 +4,7 @@
  */
 package com.mycompany.taller10.junit;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -43,6 +44,15 @@ public class OperationsIT {
         String result = Operations.MakeFormula();
         boolean valid = result.matches("[0-9+\\-*/]+");
         assertTrue(valid); 
+    }
+    @Test
+    @DisplayName("Prueba de que todos los numeros sean de dos caracteres")
+    public void testMakeFormulaNumbers () {
+        String result = Operations.MakeFormula();
+        String remplazo1= result.replace("+", ",").replace("-", ",").replace("*", ",").replace("/", ",");
+        for (String numero : remplazo1.split(",")) {
+            assertEquals(numero.length(), 2);
+        }
     }
 
     /**
