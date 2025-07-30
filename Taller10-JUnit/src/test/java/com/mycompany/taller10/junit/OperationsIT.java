@@ -4,6 +4,10 @@
  */
 package com.mycompany.taller10.junit;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,14 +25,27 @@ public class OperationsIT {
     /**
      * Test of MakeFormula method, of class Operations.
      */
+
     @Test
-    public void testMakeFormula() {
-        System.out.println("MakeFormula");
-        String expResult = "";
+    @DisplayName("Revisar que la formula no sea Null")
+    public void testMakeFormulaNotNull(){
         String result = Operations.MakeFormula();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotNull(result);
+    }
+
+    @Test
+    @DisplayName("Revisar que la formula no sea un string vacio.")
+    public void testMakeFormulaNotEmpty(){
+        String result = Operations.MakeFormula();
+        assertFalse(result.isEmpty());
+    }
+
+    @Test
+    @DisplayName("Revisar que la formula solo contenga caracteres validos.")
+    public void testMakeFormulaOnlyValidCharacters () {
+        String result = Operations.MakeFormula();
+        boolean valid = result.matches("[0-9+\\-*/]+");
+        assertTrue(valid); 
     }
 
     /**
